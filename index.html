@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Spectrogram</title>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.spectrogram.min.js"></script>
+
+    <style>
+        #waveform {
+            position: relative;
+            height: 200px;
+        }
+
+        #spectrogram {
+            position: relative;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="waveform"></div>
+    <div id="spectrogram"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var wavesurfer = WaveSurfer.create({
+                container: '#waveform',
+                waveColor: 'violet',
+                progressColor: 'purple',
+                plugins: [
+                    WaveSurfer.spectrogram.create({
+                        container: '#spectrogram',
+                        labels: true
+                    })
+                ]
+            });
+
+            wavesurfer.load('https://github.com/gboon18/gboon18.github.io/blob/b6e469892436e3e42a22715954fc8a5e652382b2/mix_0_6_scale_0_ws_1024_hl_256.wav');
+
+            wavesurfer.on('ready', function () {
+                wavesurfer.play();
+            });
+        });
+    </script>
+</body>
+</html>
